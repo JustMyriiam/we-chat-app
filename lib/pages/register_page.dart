@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:we_chat_app/auth/auth_service.dart';
+import 'package:we_chat_app/services/auth/auth_service.dart';
 import 'package:we_chat_app/components/my_button.dart';
 import 'package:we_chat_app/components/my_textfield.dart';
 
@@ -19,7 +19,7 @@ class RegisterPage extends StatelessWidget {
             _auth.signUpWithEmailAndPassword(_emailController.text, _pwController.text);
 
       } catch(e) {
-           showDialog(
+        showDialog(
         context: context,
         builder: (context) => AlertDialog(title: Text(e.toString())),
       );
