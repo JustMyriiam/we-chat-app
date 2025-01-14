@@ -54,7 +54,7 @@ class DefaultFirebaseOptions {
     appId: '1:605546278260:android:a29acd76f8ba65a13d1021',
     messagingSenderId: '605546278260',
     projectId: 'wechatapp-423f5',
-    storageBucket: 'wechatapp-423f5.appspot.com',
+    storageBucket: 'wechatapp-423f5.firebasestorage.app',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
@@ -62,7 +62,8 @@ class DefaultFirebaseOptions {
     appId: '1:605546278260:ios:0ea0d7499683e67a3d1021',
     messagingSenderId: '605546278260',
     projectId: 'wechatapp-423f5',
-    storageBucket: 'wechatapp-423f5.appspot.com',
+    storageBucket: 'wechatapp-423f5.firebasestorage.app',
     iosBundleId: 'com.example.weChatApp',
   );
+
 }
