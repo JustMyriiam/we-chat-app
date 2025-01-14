@@ -6,7 +6,7 @@ import 'package:we_chat_app/services/auth/auth_service.dart';
 import 'package:we_chat_app/services/chat/chat_service.dart';
 
 class HomePage extends StatelessWidget {
-   HomePage({super.key});
+  HomePage({super.key});
 
   final AuthService _authService = AuthService();
   final ChatService _chatService = ChatService();
@@ -14,8 +14,9 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface, // Set the background color to white
       appBar: AppBar(
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        backgroundColor: Theme.of(context).colorScheme.primary,
         title: const Text("Home"),
       ),
       drawer: const MyDrawer(),
@@ -27,40 +28,41 @@ class HomePage extends StatelessWidget {
     return StreamBuilder(
       stream: _chatService.getUsersStream(),
       builder: (context, snapshot) {
-
         if (snapshot.hasError) {
           return const Center(child: Text("Something went wrong"));
         }
-        
+
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CircularProgressIndicator());
         }
 
         return ListView(
-          children: snapshot.data!.map<Widget>((userData) => _buildUserListItem(userData, context)).toList(),
+          children: snapshot.data!
+              .map<Widget>((userData) => _buildUserListItem(userData, context))
+              .toList(),
         );
       },
     );
   }
 
   Widget _buildUserListItem(Map<String, dynamic> userData, BuildContext context) {
-    if(userData["email"] != _authService.getCurrentUser()!.email) {
+    if (userData["email"] != _authService.getCurrentUser()!.email) {
       return UserTile(
-      text: userData["email"],
-      onTap: () {
-        Navigator.push(
-          context,
-           MaterialPageRoute(builder: (context) => ChatPage(
-            receiverEmail: userData["email"],
-            receiverID: userData["uid"],
-           ),
-           ),
-        );
-      },
-    );
+        text: userData["email"],
+        onTap: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => ChatPage(
+                receiverEmail: userData["email"],
+                receiverID: userData["uid"],
+              ),
+            ),
+          );
+        },
+      );
     } else {
       return Container();
     }
   }
-
 }

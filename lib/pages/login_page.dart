@@ -4,7 +4,6 @@ import 'package:we_chat_app/components/my_button.dart';
 import 'package:we_chat_app/components/my_textfield.dart';
 
 class LoginPage extends StatelessWidget {
-
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _pwController = TextEditingController();
 
@@ -15,7 +14,10 @@ class LoginPage extends StatelessWidget {
   void login(BuildContext context) async {
     final authService = AuthService();
     try {
-      await authService.signInWithEmailPassword(_emailController.text, _pwController.text,);
+      await authService.signInWithEmailPassword(
+        _emailController.text,
+        _pwController.text,
+      );
     } catch (e) {
       showDialog(
         context: context,
@@ -23,13 +25,13 @@ class LoginPage extends StatelessWidget {
       );
     }
   }
-@override
+
+  @override
   Widget build(BuildContext context) {
-    return  Scaffold(
-      backgroundColor: Theme.of(context).colorScheme.surface,
+    return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.surface, // Set the background color to white
       body: Center(
         child: SingleChildScrollView(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -37,11 +39,12 @@ class LoginPage extends StatelessWidget {
                 'assets/images/33.png',
               ),
               const SizedBox(height: 40),
-              Padding(
-                padding: const EdgeInsets.only(bottom: 10),
+              const Padding(
+                padding: EdgeInsets.only(bottom: 10),
                 child: Text(
                   "Welcome back, you've been missed!",
                   style: TextStyle(
+                    fontWeight: FontWeight.w400,
                     fontSize: 19,
                   ),
                 ),
@@ -49,6 +52,7 @@ class LoginPage extends StatelessWidget {
               const SizedBox(height: 25),
               MyTextfield(
                 hintText: "Email",
+              
                 obscureText: false,
                 controller: _emailController,
               ),
@@ -70,7 +74,8 @@ class LoginPage extends StatelessWidget {
                   Text(
                     "Not a member? ",
                     style: TextStyle(
-                      color: Theme.of(context).colorScheme.primary,
+                      fontSize: 17,
+                      color: Theme.of(context).colorScheme.secondary,
                     ),
                   ),
                   GestureDetector(
@@ -78,8 +83,9 @@ class LoginPage extends StatelessWidget {
                     child: Text(
                       "Register now",
                       style: TextStyle(
+                        fontSize: 17,
                         fontWeight: FontWeight.bold,
-                        color: Theme.of(context).colorScheme.primary,
+                        color: Theme.of(context).colorScheme.secondary,
                       ),
                     ),
                   ),
@@ -91,6 +97,4 @@ class LoginPage extends StatelessWidget {
       ),
     );
   }
-  
-  
 }

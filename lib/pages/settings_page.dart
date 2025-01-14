@@ -9,12 +9,15 @@ class SettingsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.tertiary,
       appBar: AppBar(
-        title: Text("Settings"),
+        title: const Text("Settings"),
+        backgroundColor: Theme.of(context).colorScheme.primary,
+    
       ),
       body: Container(
         decoration: BoxDecoration(
-          color: Theme.of(context).colorScheme.primary,
+          color: Theme.of(context).colorScheme.secondary,
           borderRadius: BorderRadius.circular(12),
         ),
         margin: const EdgeInsets.all(25),
@@ -22,7 +25,7 @@ class SettingsPage extends StatelessWidget {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text("Dark Mode"),
+            const Text("Dark Mode"),
             CupertinoSwitch(value: Provider.of<ThemeProvider>(context, listen: false).isDarkMode, 
             onChanged: (value) => Provider.of<ThemeProvider>(context, listen: false).toggleTheme(),
         

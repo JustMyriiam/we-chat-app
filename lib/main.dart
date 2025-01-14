@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:we_chat_app/services/auth/auth_gate.dart';
 import 'package:provider/provider.dart';
 import 'package:we_chat_app/firebase_options.dart';
-import 'package:we_chat_app/themes/light_mode.dart';
 import 'package:we_chat_app/themes/theme_provider.dart';
 
 void main() async {

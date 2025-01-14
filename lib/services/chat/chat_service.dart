@@ -37,7 +37,6 @@ class ChatService {
   }
 
   Stream<QuerySnapshot> getMessagesStream(String userID, otherUserID) {
-    final currentUserID = _auth.currentUser!.uid;
     List<String> ids = [userID, otherUserID];
     ids.sort();
     String chatID = ids.join('_');

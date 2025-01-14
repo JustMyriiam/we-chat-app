@@ -17,16 +17,19 @@ class MyTextfield extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.secondary),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
           ),
           focusedBorder: OutlineInputBorder(
-            borderSide:
-                BorderSide(color: Theme.of(context).colorScheme.secondary),
+            borderSide: BorderSide(color: Theme.of(context).colorScheme.primary),
           ),
           filled: true,
+          fillColor: Theme.of(context).colorScheme.tertiary,
           hintText: hintText,
-          hintStyle: TextStyle(color: Theme.of(context).colorScheme.secondary, fontSize: 15, fontWeight: FontWeight.bold),
+          hintStyle: TextStyle(
+            color: Theme.of(context).colorScheme.primary,
+            fontSize: 16,
+            fontWeight: FontWeight.w400,
+          ),
         ),
       ),
     );

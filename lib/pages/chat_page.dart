@@ -7,7 +7,7 @@ import 'package:we_chat_app/services/chat/chat_service.dart';
 class ChatPage extends StatefulWidget {
   final String receiverEmail;
   final String receiverID;
-  ChatPage({super.key, required this.receiverEmail, required this.receiverID});
+  const ChatPage({super.key, required this.receiverEmail, required this.receiverID});
 
   @override
   State<ChatPage> createState() => _ChatPageState();
@@ -69,7 +69,11 @@ class _ChatPageState extends State<ChatPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text(widget.receiverEmail)),
+      backgroundColor:Theme.of(context).colorScheme.tertiary,
+      appBar: AppBar(
+        backgroundColor: Theme.of(context).colorScheme.primary,
+        title: Text(widget.receiverEmail, style: const TextStyle(fontSize: 20),),
+      ),
       body: Column(
         children: [
           Expanded(
@@ -119,28 +123,49 @@ class _ChatPageState extends State<ChatPage> {
 
   Widget _buildUserInput() {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 50.0),
+      padding: const EdgeInsets.only(bottom: 40.0, left: 10.0, right: 10.0), // Added horizontal margin
       child: Row(
         children: [
           Expanded(
             child: TextField(
               controller: _messageController,
               decoration: InputDecoration(
-                hintText: "Type a message",
+                hintText: "Ekteb message",
+                hintStyle: TextStyle(
+                  color: Theme.of(context).colorScheme.secondary, // Hint color set to secondary
+                ),
+                enabledBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.secondary, // Border color set to secondary
+                    width: 1.8, // Increased border width
+                  ),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderSide: BorderSide(
+                    color: Theme.of(context).colorScheme.secondary, // Border color set to secondary
+                    width: 1.8, // Increased border width
+                  ),
+                  borderRadius: BorderRadius.circular(25),
+                ),
+                suffixIcon: Container(
+                  width: 40, // Set width and height to ensure the circle shape
+                  height: 40,
+                  margin: const EdgeInsets.only(right: 6),
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).colorScheme.secondary, // Button color set to secondary
+                    shape: BoxShape.circle,
+                  ),
+                  child: Center(
+                    child: IconButton(
+                      icon: const Icon(Icons.arrow_forward_rounded, color: Colors.white, size: 27), // Bigger white icon
+                      onPressed: sendMessage,
+                    ),
+                  ),
+                ),
               ),
               obscureText: false,
               focusNode: myFocusNode,
-            ),
-          ),
-          Container(
-            decoration: BoxDecoration(
-              color: Colors.blue,
-              shape: BoxShape.circle,
-            ),
-            margin: const EdgeInsets.only(right: 25),
-            child: IconButton(
-              icon:  Icon(Icons.arrow_upward, color: Colors.white,),
-              onPressed: sendMessage,
             ),
           ),
         ],
